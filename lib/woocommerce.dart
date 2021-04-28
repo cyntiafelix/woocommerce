@@ -1653,7 +1653,7 @@ class WooCommerce{
     // 'Authorization': _bearerToken,
     try {
       final http.Response response = await http.get(url);
-      _printToLog('Get response $response');
+      _printToLog('Body of response $response.body');
       if (response.statusCode == 200) {
         return json.decode(response.body);
       }
