@@ -1573,6 +1573,7 @@ class WooCommerce{
   }
 
   Exception _handleHttpError(http.Response response) {
+    print('Error in response $response');
     switch (response.statusCode) {
       case 400:
       case 401:
