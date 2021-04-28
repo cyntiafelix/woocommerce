@@ -1674,7 +1674,7 @@ class WooCommerce{
       final http.Response response = await http.get(url);
       if (response.statusCode == 200) {
         var document = parse(response.body);
-        _printToLog('this is de document ${document.outerHtml}');
+        _printToLog('this is de document: ${document.outerHtml}');
         return document;
       }
       _handleHttpError(response);
