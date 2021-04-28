@@ -1672,9 +1672,9 @@ class WooCommerce{
     // 'Authorization': _bearerToken,
     try {
       final http.Response response = await http.get(url);
-      _printToLog('this is the statusCode: ${response.statusCode}');
       var document = parse(response.body);
-      _printToLog('this is the document: ${document.outerHtml}');
+      _printToLog('this is the HTML document: ${document.outerHtml}');
+      return document.outerHtml;
     } on SocketException {
       throw Exception('No Internet connection.');
     }
