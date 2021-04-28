@@ -72,6 +72,7 @@ import 'constants/constants.dart';
 import 'models/jwt_response.dart';
 import 'models/user.dart';
 import 'utilities/local_db.dart';
+import 'package:html/parser.dart' show parse;
 
 
 export 'models/cart_item.dart' show WooCartItem;
@@ -1573,7 +1574,6 @@ class WooCommerce{
   }
 
   Exception _handleHttpError(http.Response response) {
-    _printToLog('Error in response $response');
     switch (response.statusCode) {
       case 400:
       case 401:
@@ -1653,10 +1653,11 @@ class WooCommerce{
     // 'Authorization': _bearerToken,
     try {
       final http.Response response = await http.get(url);
-      _printToLog('Body of response $response.body');
       if (response.statusCode == 200) {
         return json.decode(response.body);
       }
+      var body = parse(response.body);
+      _printToLog('Body of response $body');
       _handleHttpError(response);
     } on SocketException {
       throw Exception('No Internet connection.');
