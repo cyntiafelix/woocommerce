@@ -142,13 +142,13 @@ class WooProductCategoryLinks {
 
   WooProductCategoryLinks.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<WooProductCategorySelf>();
+      List<WooProductCategorySelf> self = [];
       json['self'].forEach((v) {
         self.add(new WooProductCategorySelf.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<WooProductCategoryCollection>();
+      List<WooProductCategoryCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooProductCategoryCollection.fromJson(v));
       });

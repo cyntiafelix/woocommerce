@@ -79,13 +79,13 @@ class WooProductTagLinks {
 
   WooProductTagLinks.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<WooProductTagSelf>();
+      List<WooProductTagSelf> self = [];
       json['self'].forEach((v) {
         self.add(new WooProductTagSelf.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<WooProductTagCollection>();
+      List<WooProductTagCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooProductTagCollection.fromJson(v));
       });

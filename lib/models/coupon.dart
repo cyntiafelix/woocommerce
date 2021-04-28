@@ -167,13 +167,13 @@ class WooCouponLinks {
 
   WooCouponLinks.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<Self>();
+      List<Self> self = [];
       json['self'].forEach((v) {
         self.add(new Self.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<Collection>();
+      List<Collection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new Collection.fromJson(v));
       });

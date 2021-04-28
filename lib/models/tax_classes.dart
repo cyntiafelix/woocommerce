@@ -63,7 +63,7 @@ class WooTaxClassLinks {
 
   WooTaxClassLinks.fromJson(Map<String, dynamic> json) {
     if (json['collection'] != null) {
-      collection = new List<WooTaxClassCollection>();
+      List<WooTaxClassCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooTaxClassCollection.fromJson(v));
       });

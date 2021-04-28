@@ -43,7 +43,7 @@ class WooShippingMethod {
     parentId = json['parent_id'];
     name = json['name'];
     if (json['locations'] != null) {
-      locations = new List<WooShippingMethodLocations>();
+      List<WooShippingMethodLocations> locations = [];
       json['locations'].forEach((v) {
         locations.add(new WooShippingMethodLocations.fromJson(v));
       });
@@ -95,19 +95,19 @@ class WooShippingMethodMethods {
 
   WooShippingMethodMethods.fromJson(Map<String, dynamic> json) {
     if (json['free_shipping'] != null) {
-      freeShipping = new List<WooShippingMethodFreeShipping>();
+      List<WooShippingMethodFreeShipping> freeShipping = [];
       json['free_shipping'].forEach((v) {
         freeShipping.add(new WooShippingMethodFreeShipping.fromJson(v));
       });
     }
     if (json['flat_rate'] != null) {
-      flatRate = new List<WooShippingMethodFlatRate>();
+      List<WooShippingMethodFlatRate> flatRate = [];
       json['flat_rate'].forEach((v) {
         flatRate.add(new WooShippingMethodFlatRate.fromJson(v));
       });
     }
     if (json['local_pickup'] != null) {
-      localPickup = new List<WooShippingMethodLocalPickup>();
+      List<WooShippingMethodLocalPickup> localPickup = [];
       json['local_pickup'].forEach((v) {
         localPickup.add(new WooShippingMethodLocalPickup.fromJson(v));
       });
@@ -183,7 +183,7 @@ class WooShippingMethodFlatRate {
     calculationType = json['calculation_type'];
     taxable = json['taxable'];
     if (json['shipping_classes'] != null) {
-      shippingClasses = new List<WooShippingMethodShippingClasses>();
+      List<WooShippingMethodShippingClasses> shippingClasses = [];
       json['shipping_classes'].forEach((v) {
         shippingClasses.add(new WooShippingMethodShippingClasses.fromJson(v));
       });

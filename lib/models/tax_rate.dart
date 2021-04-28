@@ -107,13 +107,13 @@ class WooTaxRateLinks {
 
   WooTaxRateLinks.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<WooTaxRateSelf>();
+      List<WooTaxRateSelf> self = [];
       json['self'].forEach((v) {
         self.add(new WooTaxRateSelf.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<WooTaxRateCollection>();
+      List<WooTaxRateCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooTaxRateCollection.fromJson(v));
       });

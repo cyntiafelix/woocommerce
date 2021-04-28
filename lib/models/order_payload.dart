@@ -75,19 +75,19 @@ class WooOrderPayload {
     customerNote = json['customer_note'];
     parentId = json['parent_id'];
     if (json['meta_data'] != null) {
-      metaData = new List<WooOrderPayloadMetaData>();
+      List<WooOrderPayloadMetaData> metaData = [];
       json['meta_data'].forEach((v) {
         metaData.add(new WooOrderPayloadMetaData.fromJson(v));
       });
     }
     if (json['fee_lines'] != null) {
-      feeLines = new List<WooOrderPayloadFeeLines>();
+      List<WooOrderPayloadFeeLines> feeLines = [];
       json['fee_lines'].forEach((v) {
         feeLines.add(new WooOrderPayloadFeeLines.fromJson(v));
       });
     }
     if (json['coupon_lines'] != null) {
-      couponLines = new List<WooOrderPayloadCouponLines>();
+      List<WooOrderPayloadCouponLines> couponLines = [];
       json['coupon_lines'].forEach((v) {
         couponLines.add(new WooOrderPayloadCouponLines.fromJson(v));
       });
@@ -98,13 +98,13 @@ class WooOrderPayload {
         ? new WooOrderPayloadShipping.fromJson(json['shipping'])
         : null;
     if (json['line_items'] != null) {
-      lineItems = new List<LineItems>();
+      List<LineItems> lineItems = [];
       json['line_items'].forEach((v) {
         lineItems.add(new LineItems.fromJson(v));
       });
     }
     if (json['shipping_lines'] != null) {
-      shippingLines = new List<ShippingLines>();
+      List<ShippingLines> shippingLines = [];
       json['shipping_lines'].forEach((v) {
         shippingLines.add(new ShippingLines.fromJson(v));
       });
@@ -183,7 +183,7 @@ class WooOrderPayloadFeeLines {
     taxStatus = json['tax_status'];
     total = json['total'];
     if (json['meta_data'] != null) {
-      metaData = new List<WooOrderPayloadMetaData>();
+      List<WooOrderPayloadMetaData> metaData = [];
       json['meta_data'].forEach((v) {
         metaData.add(new WooOrderPayloadMetaData.fromJson(v));
       });
@@ -212,7 +212,7 @@ class WooOrderPayloadCouponLines {
   WooOrderPayloadCouponLines.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     if (json['meta_data'] != null) {
-      metaData = new List<WooOrderPayloadMetaData>();
+      List<WooOrderPayloadMetaData> metaData = [];
       json['meta_data'].forEach((v) {
         metaData.add(new WooOrderPayloadMetaData.fromJson(v));
       });

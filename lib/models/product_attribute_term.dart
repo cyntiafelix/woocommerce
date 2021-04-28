@@ -83,13 +83,13 @@ class WooProductAttributeTermLinks {
 
   WooProductAttributeTermLinks.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<WooProductAttributeTermSelf>();
+      List<WooProductAttributeTermSelf> self = [];
       json['self'].forEach((v) {
         self.add(new WooProductAttributeTermSelf.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<WooProductAttributeTermCollection>();
+      List<WooProductAttributeTermCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooProductAttributeTermCollection.fromJson(v));
       });

@@ -51,7 +51,7 @@ class WooCart {
     currency = json['currency'];
     itemCount = json['item_count'];
     if (json['items'] != null) {
-      items = new List<WooCartItems>();
+      List<WooCartItems> items = [];
       json['items'].forEach((v) {
         items.add(new WooCartItems.fromJson(v));
       });
@@ -108,7 +108,7 @@ class WooCartItems {
     sku = json['sku'];
     permalink = json['permalink'];
     if (json['images'] != null) {
-      images = new List<WooCartImages>();
+      List<WooCartImages> images = [];
       json['images'].forEach((v) {
         images.add(new WooCartImages.fromJson(v));
       });

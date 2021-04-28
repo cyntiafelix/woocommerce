@@ -1652,6 +1652,7 @@ class WooCommerce{
     // 'Authorization': _bearerToken,
     try {
       final http.Response response = await http.get(url);
+      print('Get response $response');
       if (response.statusCode == 200) {
         return json.decode(response.body);
       }
@@ -1716,7 +1717,7 @@ class WooCommerce{
 
   /// Make a custom delete request to Woocommerce, using WooCommerce SDK.
 
-  Future<dynamic> Oldelete(String endPoint, Map data) async {
+  Future<dynamic> oldelete(String endPoint, Map data) async {
     String url = this._getOAuthURL("DELETE", endPoint);
 
     http.Client client = http.Client();

@@ -63,7 +63,7 @@ class WooCartItem {
     sku = json['sku'];
     permalink = json['permalink'];
     if (json['images'] != null) {
-      images = new List<WooCartItemImages>();
+      List<WooCartItemImages> images = [];
       json['images'].forEach((v) {
         images.add(new WooCartItemImages.fromJson(v));
       });

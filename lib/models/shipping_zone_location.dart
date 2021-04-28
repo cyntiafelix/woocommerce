@@ -64,13 +64,13 @@ class WooShippingZoneLocationLinks {
 
   WooShippingZoneLocationLinks.fromJson(Map<String, dynamic> json) {
     if (json['collection'] != null) {
-      collection = new List<WooShippingZoneLocationCollection>();
+      List<WooShippingZoneLocationCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooShippingZoneLocationCollection.fromJson(v));
       });
     }
     if (json['describes'] != null) {
-      describes = new List<WooShippingZoneLocationDescribes>();
+      List<WooShippingZoneLocationDescribes> describes = [];
       json['describes'].forEach((v) {
         describes.add(new WooShippingZoneLocationDescribes.fromJson(v));
       });

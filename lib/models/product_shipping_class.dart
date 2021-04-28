@@ -79,13 +79,13 @@ class WooProductShippingClassLinks {
 
   WooProductShippingClassLinks.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<WooProductShippingClassSelf>();
+      List<WooProductShippingClassSelf> self = [];
       json['self'].forEach((v) {
         self.add(new WooProductShippingClassSelf.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<WooProductShippingClassCollection>();
+      List<WooProductShippingClassCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooProductShippingClassCollection.fromJson(v));
       });

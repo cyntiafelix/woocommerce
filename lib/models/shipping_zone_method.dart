@@ -560,19 +560,19 @@ class WooShippingZoneMethodLinks {
 
   WooShippingZoneMethodLinks.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<WooShippingZoneMethodSelf>();
+      List<WooShippingZoneMethodSelf> self = [];
       json['self'].forEach((v) {
         self.add(new WooShippingZoneMethodSelf.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<WooShippingZoneMethodCollection>();
+      List<WooShippingZoneMethodCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooShippingZoneMethodCollection.fromJson(v));
       });
     }
     if (json['describes'] != null) {
-      describes = new List<WooShippingZoneMethodDescribes>();
+      List<WooShippingZoneMethodDescribes> describes = [];
       json['describes'].forEach((v) {
         describes.add(new WooShippingZoneMethodDescribes.fromJson(v));
       });

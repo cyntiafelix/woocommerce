@@ -168,13 +168,13 @@ class WooPaymentGatewayLinks {
 
   WooPaymentGatewayLinks.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<WooPaymentGatewaySelf>();
+      List<WooPaymentGatewaySelf> self = [];
       json['self'].forEach((v) {
         self.add(new WooPaymentGatewaySelf.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<WooPaymentGatewayCollection>();
+      List<WooPaymentGatewayCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooPaymentGatewayCollection.fromJson(v));
       });

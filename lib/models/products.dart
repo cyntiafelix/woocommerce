@@ -280,7 +280,7 @@ class WooProductImage {
         dateCreatedGMT = DateTime.parse(json['date_created_gmt']);
 }
 
-/**
+/*
 class Category {
   final int id;
   final String name;

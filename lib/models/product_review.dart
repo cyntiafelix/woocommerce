@@ -108,19 +108,19 @@ class WooProductReviewLinks {
 
   WooProductReviewLinks.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<WooProductReviewSelf>();
+      List<WooProductReviewSelf> self = [];
       json['self'].forEach((v) {
         self.add(new WooProductReviewSelf.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<WooProductReviewCollection>();
+      List<WooProductReviewCollection> collection = [];
       json['collection'].forEach((v) {
         collection.add(new WooProductReviewCollection.fromJson(v));
       });
     }
     if (json['up'] != null) {
-      up = new List<WooProductReviewUp>();
+      List<WooProductReviewUp> up = [];
       json['up'].forEach((v) {
         up.add(new WooProductReviewUp.fromJson(v));
       });
