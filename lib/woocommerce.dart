@@ -1573,7 +1573,7 @@ class WooCommerce{
   }
 
   Exception _handleHttpError(http.Response response) {
-    print('Error in response $response');
+    _printToLog('Error in response $response');
     switch (response.statusCode) {
       case 400:
       case 401:
@@ -1653,7 +1653,7 @@ class WooCommerce{
     // 'Authorization': _bearerToken,
     try {
       final http.Response response = await http.get(url);
-      print('Get response $response');
+      _printToLog('Get response $response');
       if (response.statusCode == 200) {
         return json.decode(response.body);
       }
