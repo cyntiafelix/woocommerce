@@ -1656,8 +1656,27 @@ class WooCommerce{
       if (response.statusCode == 200) {
         return json.decode(response.body);
       }
-      var body = parse(response.body);
-      _printToLog('Body of response $body');
+      _handleHttpError(response);
+    } on SocketException {
+      throw Exception('No Internet connection.');
+    }
+  }
+
+  Future<dynamic> getHtml(String endPoint) async {
+    String url = this._getOAuthURL("GET", endPoint);
+    String _token = await _localDbService.getSecurityToken();
+    String _bearerToken = "Bearer $_token";
+    _printToLog('this is the bearer token : '+_bearerToken);
+    Map<String, String> headers = new HashMap();
+    headers.putIfAbsent('Accept', () => 'application/json charset=utf-8');
+    // 'Authorization': _bearerToken,
+    try {
+      final http.Response response = await http.get(url);
+      if (response.statusCode == 200) {
+        var document = parse(response.body);
+        _printToLog('this is de document ${document.outerHtml}');
+        return document;
+      }
       _handleHttpError(response);
     } on SocketException {
       throw Exception('No Internet connection.');
