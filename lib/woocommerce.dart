@@ -1645,13 +1645,10 @@ class WooCommerce{
 
   Future<dynamic> get(String endPoint) async {
     String url = this._getOAuthURL("GET", endPoint);
-    _printToLog('this is the url : '+ url);
     String _token = await _localDbService.getSecurityToken();
     String _bearerToken = "Bearer $_token";
-    _printToLog('this is the bearer token : '+_bearerToken);
     Map<String, String> headers = new HashMap();
     headers.putIfAbsent('Accept', () => 'application/json charset=utf-8');
-    _printToLog('this are the headers : '+ headers.toString());
     // 'Authorization': _bearerToken,
     try {
       final http.Response response = await http.get(url);
@@ -1668,15 +1665,17 @@ class WooCommerce{
     String url = this._getOAuthURL("GET", endPoint);
     String _token = await _localDbService.getSecurityToken();
     String _bearerToken = "Bearer $_token";
-    _printToLog('this is the bearer token : '+_bearerToken);
     Map<String, String> headers = new HashMap();
     headers.putIfAbsent('Accept', () => 'application/json charset=utf-8');
     // 'Authorization': _bearerToken,
     try {
       final http.Response response = await http.get(url);
-      var document = parse(response.body);
-      _printToLog('this is the HTML document: ${document.outerHtml}');
-      return document.outerHtml;
+      if (response.statusCode == 200) {
+        var document = parse(response.body);
+        _printToLog('this is the HTML document: ${document.outerHtml}');
+        return document.outerHtml;
+      }
+      _handleHttpError(response);
     } on SocketException {
       throw Exception('No Internet connection.');
     }
