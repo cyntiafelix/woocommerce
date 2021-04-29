@@ -1660,27 +1660,7 @@ class WooCommerce{
       throw Exception('No Internet connection.');
     }
   }
-
-  Future<dynamic> getHtml(String endPoint) async {
-    String url = this._getOAuthURL("GET", endPoint);
-    String _token = await _localDbService.getSecurityToken();
-    String _bearerToken = "Bearer $_token";
-    Map<String, String> headers = new HashMap();
-    headers.putIfAbsent('Accept', () => 'application/json charset=utf-8');
-    // 'Authorization': _bearerToken,
-    try {
-      final http.Response response = await http.get(url);
-      if (response.statusCode == 200) {
-        var document = parse(response.body);
-        _printToLog('this is the HTML document: ${document.outerHtml}');
-        return document.outerHtml;
-      }
-      _handleHttpError(response);
-    } on SocketException {
-      throw Exception('No Internet connection.');
-    }
-  }
-
+  
   Future<dynamic> oldget(String endPoint) async {
     String url = this._getOAuthURL("GET", endPoint);
 
