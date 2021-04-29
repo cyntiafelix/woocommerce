@@ -1645,14 +1645,15 @@ class WooCommerce{
 
   Future<dynamic> get(String endPoint) async {
     String url = this._getOAuthURL("GET", endPoint);
+    _printToLog('this is the url : '+ url);
     String _token = await _localDbService.getSecurityToken();
     String _bearerToken = "Bearer $_token";
     _printToLog('this is the bearer token : '+_bearerToken);
     Map<String, String> headers = new HashMap();
     headers.putIfAbsent('Accept', () => 'application/json charset=utf-8');
+    _printToLog('this are the headers : '+ headers.toString());
     // 'Authorization': _bearerToken,
     try {
-      _printToLog('this is the url : '+ url);
       final http.Response response = await http.get(url);
       if (response.statusCode == 200) {
         return json.decode(response.body);
