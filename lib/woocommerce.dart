@@ -1652,6 +1652,7 @@ class WooCommerce{
     headers.putIfAbsent('Accept', () => 'application/json charset=utf-8');
     // 'Authorization': _bearerToken,
     try {
+      _printToLog('this is the url : '+ url);
       final http.Response response = await http.get(url);
       if (response.statusCode == 200) {
         return json.decode(response.body);
