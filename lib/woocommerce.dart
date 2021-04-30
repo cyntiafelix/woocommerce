@@ -72,7 +72,6 @@ import 'constants/constants.dart';
 import 'models/jwt_response.dart';
 import 'models/user.dart';
 import 'utilities/local_db.dart';
-import 'package:html/parser.dart' show parse;
 
 
 export 'models/cart_item.dart' show WooCartItem;
@@ -1660,7 +1659,7 @@ class WooCommerce{
       throw Exception('No Internet connection.');
     }
   }
-  
+
   Future<dynamic> oldget(String endPoint) async {
     String url = this._getOAuthURL("GET", endPoint);
 
