@@ -173,10 +173,8 @@ class WooCommerce {
       'password': password,
     };
 
-    final response = await http.post(
-      this.baseUrl + URL_JWT_TOKEN,
-      body: body,
-    );
+    final url = Uri.parse(this.baseUrl + URL_JWT_TOKEN);
+    final response = await http.post( url, body: body,);
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       WooJWTResponse authResponse =
@@ -226,8 +224,9 @@ class WooCommerce {
   Future<int> fetchLoggedInUserId() async {
     _authToken = await _localDbService.getSecurityToken();
     _urlHeader['Authorization'] = 'Bearer ' + _authToken;
+    final url = Uri.parse(this.baseUrl + URL_USER_ME);
     final response =
-        await http.get(this.baseUrl + URL_USER_ME, headers: _urlHeader);
+        await http.get(url, headers: _urlHeader);
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       final jsonStr = json.decode(response.body);
@@ -1013,8 +1012,9 @@ class WooCommerce {
     if (variations != null) data['variations'] = variations;
     await getAuthTokenFromDb();
     _urlHeader['Authorization'] = 'Bearer ' + _authToken;
+    final url = Uri.parse(this.baseUrl + URL_STORE_API_PATH + 'cart/items');
     final response = await http.post(
-        this.baseUrl + URL_STORE_API_PATH + 'cart/items',
+        url,
         headers: _urlHeader,
         body: data);
 
@@ -1037,8 +1037,9 @@ class WooCommerce {
   Future<List<WooCartItem>> getMyCartItems() async {
     await getAuthTokenFromDb();
     _urlHeader['Authorization'] = 'Bearer ' + _authToken;
+    final url = Uri.parse(this.baseUrl + URL_STORE_API_PATH + 'cart/items');
     final response = await http.get(
-        this.baseUrl + URL_STORE_API_PATH + 'cart/items',
+        url,
         headers: _urlHeader);
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
@@ -1067,7 +1068,8 @@ class WooCommerce {
     await getAuthTokenFromDb();
     _urlHeader['Authorization'] = 'Bearer ' + _authToken;
     WooCart cart;
-    final response = await http.get(this.baseUrl + URL_STORE_API_PATH + 'cart',
+    final url = Uri.parse(this.baseUrl + URL_STORE_API_PATH + 'cart');
+    final response = await http.get(url,
         headers: _urlHeader);
     _printToLog('response gotten : ' + response.toString());
     if (response.statusCode >= 200 && response.statusCode < 300) {
@@ -1089,9 +1091,9 @@ class WooCommerce {
     _printToLog('Deleting CartItem With Payload : ' + data.toString());
     await getAuthTokenFromDb();
     _urlHeader['Authorization'] = 'Bearer ' + _authToken;
-
+    final url = Uri.parse(this.baseUrl + URL_STORE_API_PATH + 'cart/items/' + key);
     final http.Response response = await http.delete(
-      this.baseUrl + URL_STORE_API_PATH + 'cart/items/' + key,
+      url,
       headers: _urlHeader,
     );
     _printToLog('response of delete cart  : ' + response.body.toString());
@@ -1114,9 +1116,9 @@ class WooCommerce {
   Future deleteAllMyCartItems() async {
     await getAuthTokenFromDb();
     _urlHeader['Authorization'] = 'Bearer ' + _authToken;
-
+    final url = Uri.parse(this.baseUrl + URL_STORE_API_PATH + 'cart/items/');
     final http.Response response = await http.delete(
-      this.baseUrl + URL_STORE_API_PATH + 'cart/items/',
+      url,
       headers: _urlHeader,
     );
     _printToLog('response of delete cart  : ' + response.body.toString());
@@ -1136,8 +1138,9 @@ class WooCommerce {
     await getAuthTokenFromDb();
     _urlHeader['Authorization'] = 'Bearer ' + _authToken;
     WooCartItem cartItem;
+    final url = Uri.parse(this.baseUrl + URL_STORE_API_PATH + 'cart/items/' + key);
     final response = await http.get(
-        this.baseUrl + URL_STORE_API_PATH + 'cart/items/' + key,
+        url,
         headers: _urlHeader);
     _printToLog('response gotten : ' + response.toString());
     if (response.statusCode >= 200 && response.statusCode < 300) {
@@ -1165,8 +1168,9 @@ class WooCommerce {
     if (variations != null) data['variations'] = variations;
     await getAuthTokenFromDb();
     _urlHeader['Authorization'] = 'Bearer ' + _authToken;
+    final url = Uri.parse(this.baseUrl + URL_STORE_API_PATH + 'cart/items/' + key);
     final response = await http.put(
-        this.baseUrl + URL_STORE_API_PATH + 'cart/items/' + key,
+        url,
         headers: _urlHeader,
         body: data);
 
@@ -1781,7 +1785,7 @@ class WooCommerce {
   /// Make a custom get request to a Woocommerce endpoint, using WooCommerce SDK.
 
   Future<dynamic> get(String endPoint) async {
-    String url = this._getOAuthURL("GET", endPoint);
+    String _endPoint = this._getOAuthURL("GET", endPoint);
     String _token = await _localDbService.getSecurityToken();
     String _bearerToken = "Bearer $_token";
     _printToLog('this is the bearer token : ' + _bearerToken);
@@ -1789,6 +1793,7 @@ class WooCommerce {
     headers.putIfAbsent('Accept', () => 'application/json charset=utf-8');
     // 'Authorization': _bearerToken,
     try {
+      final url = Uri.parse(_endPoint);
       final http.Response response = await http.get(url);
       if (response.statusCode == 200) {
         return json.decode(response.body);
